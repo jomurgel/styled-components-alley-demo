@@ -1,95 +1,62 @@
 import styled from 'styled-components';
 
-const AppBody = styled.div`
-  font-family: ${(props) => props.theme.font};
+const AppWrapper = styled.div`
+  font-family: ${(props) => props.theme.font}
 `;
 
 const Title = styled.h1`
-  color: ${({ theme }) => theme.red};
+  border-bottom: 2px dashed ${({ theme }) => theme.yellow};
+  font-style: 42px;
 `;
 
 const Paragraph = styled.p`
-  color: ${(props) => props.color || props.theme.deepRed};
-  font-size: 1.25em;
+  color: ${({ color, theme }) => color || theme.deepRed};
+  margin-bottom: 25px;
 `;
 
-const CheckList = styled.ul`
-  border-radius: ${({ theme }) => theme.radius};
-  border: 1px solid ${({ theme }) => theme.black};
-  list-style: none;
-  margin: 0;
-  padding: 15px;
-  width: 50%;
+const Heading = styled.h2`
+  font-style: ${({ italic }) => italic ? 'italic' : 'normal'};
 `;
 
-const ListItem = styled.li`
-  margin-bottom: 10px;
-  padding-left: 25px;
-  position: relative;
+const Input = styled.input.attrs((props) => ({
+  type: props.type || 'checkbox',
+}))`
 
-  &::before {
-    border-radius: 4px;
-    border: 1px solid ${({ theme }) => theme.black};
-    content: '';
-    display: block;
-    height: 15px;
-    left: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-  }
+  ${({ invalid }) => invalid && `
 
-  ${({ checked, theme }) => checked && `
-    color: ${theme.deepRed};
-    text-decoration: line-through;
-
-    &::before {
-      border: 1px solid ${theme.deepRed};
-      color: ${theme.deepRed};
-      content: '✓';
-      line-height: 0.9;
+    &,
+    + span {
+      opacity: 0.2;
     }
   `}
-`;
 
-const Input = styled.input.attrs(({ color, theme }) => ({
-  color: color || theme.red,
-  defaultValue: 'testing input',
-  type: 'email',
-}))`
-  border-radius: ${({ theme }) => theme.radius};
-  border: 1px solid ${(props) => props.color};
-  font-size: 18px;
-  margin-bottom: 25px;
-  padding: 10px 15px;
+  + span {
+    color: ${({ theme }) => theme.black};
+    text-decoration: none;
+  }
 
-  &:focus {
-    border-color: ${({ theme }) => theme.yellow};
-    outline: none; /* eek */
+  &:checked + span {
+    color: ${({ theme }) => theme.blue};
+    text-decoration: line-through;
   }
 `;
 
 const Label = styled.label`
+  opacity: 0.5;
+`;
 
-  > span {
-    display: block;
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-
-  &:focus-within + ${CheckList} {
-    border: 1px solid ${({ theme }) => theme.red};
+const Checkbox = styled.div`
+  &:focus-within > ${Label} {
+    opacity: 1;
   }
 `;
 
-
 export default {
-  AppBody,
-  CheckList,
+  AppWrapper,
+  Title,
+  Paragraph,
+  Heading,
   Input,
   Label,
-  ListItem,
-  Paragraph,
-  Title,
+  Checkbox,
 };

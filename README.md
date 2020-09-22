@@ -1,6 +1,9 @@
-# Styled Components Alley LearnStuff Demo — 8/25/2020
+# Styled Components Demo for Alley
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Files
+This repo contains the initial starting point in the `App-Start.js` and the final and working state in `App-Finish` providing a good before and after comparison.
 
 ## Available Scripts
 
